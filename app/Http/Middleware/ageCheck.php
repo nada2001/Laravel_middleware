@@ -16,7 +16,12 @@ class ageCheck
      */
     public function handle(Request $request, Closure $next)
     {
-        echo "This text is coming from the middleware";
+        if($request->age && $request->age<18){
+            return redirect('noaccessPage');
+
+        };
+        
+        echo "<h1>This text is coming from the middleware</  h1>";
         return $next($request);
     }
 }
